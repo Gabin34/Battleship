@@ -1,0 +1,305 @@
+from tkinter import*
+
+#==================================================================================================================================================================
+# Description : Ouvre la page d'accueil du jeu.
+# Entrée : Rien.
+# Sortie : Page d'accueil graphique sur tkinter avec un bouton "Jouer".
+#==================================================================================================================================================================
+def homePage():
+   global ship
+   global battleship
+   global mainCanvas
+   global playButton
+   mainCanvas = Canvas(fenetre, width = 500, height = 500, bg = 'DodgerBlue1')
+   mainCanvas.pack()
+   battleship = PhotoImage(file = "BATTLESHIPS.png")
+   mainCanvas.create_image(265, 100, image = battleship)
+   ship = PhotoImage(file = "Ship.png")
+   mainCanvas.create_image(265, 400, image = ship)
+   playButton = Button(mainCanvas, text = "Play", command = modePage, bd = 10)
+   playButton.pack(padx = 250, pady = 250)
+
+#==================================================================================================================================================================
+# Description : Ouvre la page du jeu où on peut choisir le mode, 1 Joueur ou 2 Joueur.
+# Entrée : Rien, on arrive ici par le bouton "Jouer" de la page d'accueil.
+# Sortie : Page graphique sur tkinter avec deux boutons "1 Joueur" et "2 Joueur".
+#==================================================================================================================================================================
+def modePage():
+   global middleFrame
+   playButton.destroy()
+   middleFrame = Frame(mainCanvas, bg = 'DodgerBlue1')
+   middleFrame.pack(padx = 195, pady = 250)
+   vsComButton = Button(middleFrame, text = "1 Player", bd = 5, command = bateauxJoueur)
+   vsComButton.pack(side = 'left', padx = 5)
+   vsPlayerButton = Button(middleFrame, text = "2 Players", bd = 5, command = bateauxJoueur)
+   vsPlayerButton.pack(side = 'right', padx = 5)
+
+#==================================================================================================================================================================
+# Description : Remets le canvas à zéro.
+# Entrée : Rien, ceci arrive avant de créer une nouvelle page.
+# Sortie : Fênetre tkinter contenant seulement un Canvas au fond bleu.
+#==================================================================================================================================================================
+def wipeCanvas():
+   mainCanvas.delete('all')
+   middleFrame.destroy()
+   
+#==================================================================================================================================================================
+# Description : Mise en place de la grille sur lequel on va jouer.
+# Entrée : Rien, on arrive ici par le bouton "1 Joueur" ou "2 Joueur".
+# Sortie : Page graphique sur tkinter avec une grille de boutons.
+#==================================================================================================================================================================
+def grid():
+   global middleFrame
+   buttonA1 = Button(middleFrame, height = 2, width = 4, text = "A1", command = boat(1))
+   buttonA1.grid(row = 1, column = 1)
+   buttonA2 = Button(middleFrame, height = 2, width = 4, text = "A2", command = boat(1))
+   buttonA2.grid(row = 1, column = 2)
+   buttonA3 = Button(middleFrame, height = 2, width = 4, text = "A3", command = boat(1))
+   buttonA3.grid(row = 1, column = 3)
+   buttonA4 = Button(middleFrame, height = 2, width = 4, text = "A4", command = boat(1))
+   buttonA4.grid(row = 1, column = 4)
+   buttonA5 = Button(middleFrame, height = 2, width = 4, text = "A5", command = boat(1))
+   buttonA5.grid(row = 1, column = 5)
+   buttonA6 = Button(middleFrame, height = 2, width = 4, text = "A6", command = boat(1))
+   buttonA6.grid(row = 1, column = 6)
+   buttonA7 = Button(middleFrame, height = 2, width = 4, text = "A7", command = boat(1))
+   buttonA7.grid(row = 1, column = 7)
+   buttonA8 = Button(middleFrame, height = 2, width = 4, text = "A8", command = boat(1))
+   buttonA8.grid(row = 1, column = 8)
+   buttonA9 = Button(middleFrame, height = 2, width = 4, text = "A9", command = boat(1))
+   buttonA9.grid(row = 1, column = 9)
+   buttonA10 = Button(middleFrame, height = 2, width = 4, text = "A10", command = boat(1))
+   buttonA10.grid(row = 1, column = 10)
+   buttonB1 = Button(middleFrame, height = 2, width = 4, text = "B1", command = boat(1))
+   buttonB1.grid(row = 2, column = 1)
+   buttonB2 = Button(middleFrame, height = 2, width = 4, text = "B2", command = boat(1))
+   buttonB2.grid(row = 2, column = 2)
+   buttonB3 = Button(middleFrame, height = 2, width = 4, text = "B3", command = boat(1))
+   buttonB3.grid(row = 2, column = 3)
+   buttonB4 = Button(middleFrame, height = 2, width = 4, text = "B4", command = boat(1))
+   buttonB4.grid(row = 2, column = 4)
+   buttonB5 = Button(middleFrame, height = 2, width = 4, text = "B5", command = boat(1))
+   buttonB5.grid(row = 2, column = 5)
+   buttonB6 = Button(middleFrame, height = 2, width = 4, text = "B6", command = boat(1))
+   buttonB6.grid(row = 2, column = 6)
+   buttonB7 = Button(middleFrame, height = 2, width = 4, text = "B7", command = boat(1))
+   buttonB7.grid(row = 2, column = 7)
+   buttonB8 = Button(middleFrame, height = 2, width = 4, text = "B8", command = boat(1))
+   buttonB8.grid(row = 2, column = 8)
+   buttonB9 = Button(middleFrame, height = 2, width = 4, text = "B9", command = boat(1))
+   buttonB9.grid(row = 2, column = 9)
+   buttonB10 = Button(middleFrame, height = 2, width = 4, text = "B10", command = boat(1))
+   buttonB10.grid(row = 2, column = 10)
+   buttonC1 = Button(middleFrame, height = 2, width = 4, text = "C1", command = boat(1))
+   buttonC1.grid(row = 3, column = 1)
+   buttonC2 = Button(middleFrame, height = 2, width = 4, text = "C2", command = boat(1))
+   buttonC2.grid(row = 3, column = 2)
+   buttonC3 = Button(middleFrame, height = 2, width = 4, text = "C3", command = boat(1))
+   buttonC3.grid(row = 3, column = 3)
+   buttonC4 = Button(middleFrame, height = 2, width = 4, text = "C4", command = boat(1))
+   buttonC4.grid(row = 3, column = 4)
+   buttonC5 = Button(middleFrame, height = 2, width = 4, text = "C5", command = boat(1))
+   buttonC5.grid(row = 3, column = 5)
+   buttonC6 = Button(middleFrame, height = 2, width = 4, text = "C6", command = boat(1))
+   buttonC6.grid(row = 3, column = 6)
+   buttonC7 = Button(middleFrame, height = 2, width = 4, text = "C7", command = boat(1))
+   buttonC7.grid(row = 3, column = 7)
+   buttonC8 = Button(middleFrame, height = 2, width = 4, text = "C8", command = boat(1))
+   buttonC8.grid(row = 3, column = 8)
+   buttonC9 = Button(middleFrame, height = 2, width = 4, text = "C9", command = boat(1))
+   buttonC9.grid(row = 3, column = 9)
+   buttonC10 = Button(middleFrame, height = 2, width = 4, text = "C10", command = boat(1))
+   buttonC10.grid(row = 3, column = 10)
+   buttonD1 = Button(middleFrame, height = 2, width = 4, text = "D1", command = boat(1))
+   buttonD1.grid(row = 4, column = 1)
+   buttonD2 = Button(middleFrame, height = 2, width = 4, text = "D2", command = boat(1))
+   buttonD2.grid(row = 4, column = 2)
+   buttonD3 = Button(middleFrame, height = 2, width = 4, text = "D3", command = boat(1))
+   buttonD3.grid(row = 4, column = 3)
+   buttonD4 = Button(middleFrame, height = 2, width = 4, text = "D4", command = boat(1))
+   buttonD4.grid(row = 4, column = 4)
+   buttonD5 = Button(middleFrame, height = 2, width = 4, text = "D5", command = boat(1))
+   buttonD5.grid(row = 4, column = 5)
+   buttonD6 = Button(middleFrame, height = 2, width = 4, text = "D6", command = boat(1))
+   buttonD6.grid(row = 4, column = 6)
+   buttonD7 = Button(middleFrame, height = 2, width = 4, text = "D7", command = boat(1))
+   buttonD7.grid(row = 4, column = 7)
+   buttonD8 = Button(middleFrame, height = 2, width = 4, text = "D8", command = boat(1))
+   buttonD8.grid(row = 4, column = 8)
+   buttonD9 = Button(middleFrame, height = 2, width = 4, text = "D9", command = boat(1))
+   buttonD9.grid(row = 4, column = 9)
+   buttonD10 = Button(middleFrame, height = 2, width = 4, text = "D10", command = boat(1))
+   buttonD10.grid(row = 4, column = 10)
+   buttonE1 = Button(middleFrame, height = 2, width = 4, text = "E1", command = boat(1))
+   buttonE1.grid(row = 5, column = 1)
+   buttonE2 = Button(middleFrame, height = 2, width = 4, text = "E2", command = boat(1))
+   buttonE2.grid(row = 5, column = 2)
+   buttonE3 = Button(middleFrame, height = 2, width = 4, text = "E3", command = boat(1))
+   buttonE3.grid(row = 5, column = 3)
+   buttonE4 = Button(middleFrame, height = 2, width = 4, text = "E4", command = boat(1))
+   buttonE4.grid(row = 5, column = 4)
+   buttonE5 = Button(middleFrame, height = 2, width = 4, text = "E5", command = boat(1))
+   buttonE5.grid(row = 5, column = 5)
+   buttonE6 = Button(middleFrame, height = 2, width = 4, text = "E6", command = boat(1))
+   buttonE6.grid(row = 5, column = 6)
+   buttonE7 = Button(middleFrame, height = 2, width = 4, text = "E7", command = boat(1))
+   buttonE7.grid(row = 5, column = 7)
+   buttonE8 = Button(middleFrame, height = 2, width = 4, text = "E8", command = boat(1))
+   buttonE8.grid(row = 5, column = 8)
+   buttonE9 = Button(middleFrame, height = 2, width = 4, text = "E9", command = boat(1))
+   buttonE9.grid(row = 5, column = 9)
+   buttonE10 = Button(middleFrame, height = 2, width = 4, text = "E10", command = boat(1))
+   buttonE10.grid(row = 5, column = 10)
+   buttonF1 = Button(middleFrame, height = 2, width = 4, text = "F1", command = boat(1))
+   buttonF1.grid(row = 6, column = 1)
+   buttonF2 = Button(middleFrame, height = 2, width = 4, text = "F2", command = boat(1))
+   buttonF2.grid(row = 6, column = 2)
+   buttonF3 = Button(middleFrame, height = 2, width = 4, text = "F3", command = boat(1))
+   buttonF3.grid(row = 6, column = 3)
+   buttonF4 = Button(middleFrame, height = 2, width = 4, text = "F4", command = boat(1))
+   buttonF4.grid(row = 6, column = 4)
+   buttonF5 = Button(middleFrame, height = 2, width = 4, text = "F5", command = boat(1))
+   buttonF5.grid(row = 6, column = 5)
+   buttonF6 = Button(middleFrame, height = 2, width = 4, text = "F6", command = boat(1))
+   buttonF6.grid(row = 6, column = 6)
+   buttonF7 = Button(middleFrame, height = 2, width = 4, text = "F7", command = boat(1))
+   buttonF7.grid(row = 6, column = 7)
+   buttonF8 = Button(middleFrame, height = 2, width = 4, text = "F8", command = boat(1))
+   buttonF8.grid(row = 6, column = 8)
+   buttonF9 = Button(middleFrame, height = 2, width = 4, text = "F9", command = boat(1))
+   buttonF9.grid(row = 6, column = 9)
+   buttonF10 = Button(middleFrame, height = 2, width = 4, text = "F10", command = boat(1))
+   buttonF10.grid(row = 6, column = 10)
+   buttonG1 = Button(middleFrame, height = 2, width = 4, text = "G1", command = boat(1))
+   buttonG1.grid(row = 7, column = 1)
+   buttonG2 = Button(middleFrame, height = 2, width = 4, text = "G2", command = boat(1))
+   buttonG2.grid(row = 7, column = 2)
+   buttonG3 = Button(middleFrame, height = 2, width = 4, text = "G3", command = boat(1))
+   buttonG3.grid(row = 7, column = 3)
+   buttonG4 = Button(middleFrame, height = 2, width = 4, text = "G4", command = boat(1))
+   buttonG4.grid(row = 7, column = 4)
+   buttonG5 = Button(middleFrame, height = 2, width = 4, text = "G5", command = boat(1))
+   buttonG5.grid(row = 7, column = 5)
+   buttonG6 = Button(middleFrame, height = 2, width = 4, text = "G6", command = boat(1))
+   buttonG6.grid(row = 7, column = 6)
+   buttonG7 = Button(middleFrame, height = 2, width = 4, text = "G7", command = boat(1))
+   buttonG7.grid(row = 7, column = 7)
+   buttonG8 = Button(middleFrame, height = 2, width = 4, text = "G8", command = boat(1))
+   buttonG8.grid(row = 7, column = 8)
+   buttonG9 = Button(middleFrame, height = 2, width = 4, text = "G9", command = boat(1))
+   buttonG9.grid(row = 7, column = 9)
+   buttonG10 = Button(middleFrame, height = 2, width = 4, text = "G10", command = boat(1))
+   buttonG10.grid(row = 7, column = 10)
+   buttonH1 = Button(middleFrame, height = 2, width = 4, text = "H1", command = boat(1))
+   buttonH1.grid(row = 8, column = 1)
+   buttonH2 = Button(middleFrame, height = 2, width = 4, text = "H2", command = boat(1))
+   buttonH2.grid(row = 8, column = 2)
+   buttonH3 = Button(middleFrame, height = 2, width = 4, text = "H3", command = boat(1))
+   buttonH3.grid(row = 8, column = 3)
+   buttonH4 = Button(middleFrame, height = 2, width = 4, text = "H4", command = boat(1))
+   buttonH4.grid(row = 8, column = 4)
+   buttonH5 = Button(middleFrame, height = 2, width = 4, text = "H5", command = boat(1))
+   buttonH5.grid(row = 8, column = 5)
+   buttonH6 = Button(middleFrame, height = 2, width = 4, text = "H6", command = boat(1))
+   buttonH6.grid(row = 8, column = 6)
+   buttonH7 = Button(middleFrame, height = 2, width = 4, text = "H7", command = boat(1))
+   buttonH7.grid(row = 8, column = 7)
+   buttonH8 = Button(middleFrame, height = 2, width = 4, text = "H8", command = boat(1))
+   buttonH8.grid(row = 8, column = 8)
+   buttonH9 = Button(middleFrame, height = 2, width = 4, text = "H9", command = boat(1))
+   buttonH9.grid(row = 8, column = 9)
+   buttonH10 = Button(middleFrame, height = 2, width = 4, text = "H10", command = boat(1))
+   buttonH10.grid(row = 8, column = 10)
+   buttonI1 = Button(middleFrame, height = 2, width = 4, text = "I1", command = boat(1))
+   buttonI1.grid(row = 9, column = 1)
+   buttonI2 = Button(middleFrame, height = 2, width = 4, text = "I2", command = boat(1))
+   buttonI2.grid(row = 9, column = 2)
+   buttonI3 = Button(middleFrame, height = 2, width = 4, text = "I3", command = boat(1))
+   buttonI3.grid(row = 9, column = 3)
+   buttonI4 = Button(middleFrame, height = 2, width = 4, text = "I4", command = boat(1))
+   buttonI4.grid(row = 9, column = 4)
+   buttonI5 = Button(middleFrame, height = 2, width = 4, text = "I5", command = boat(1))
+   buttonI5.grid(row = 9, column = 5)
+   buttonI6 = Button(middleFrame, height = 2, width = 4, text = "I6", command = boat(1))
+   buttonI6.grid(row = 9, column = 6)
+   buttonI7 = Button(middleFrame, height = 2, width = 4, text = "I7", command = boat(1))
+   buttonI7.grid(row = 9, column = 7)
+   buttonI8 = Button(middleFrame, height = 2, width = 4, text = "I8", command = boat(1))
+   buttonI8.grid(row = 9, column = 8)
+   buttonI9 = Button(middleFrame, height = 2, width = 4, text = "I9", command = boat(1))
+   buttonI9.grid(row = 9, column = 9)
+   buttonI10 = Button(middleFrame, height = 2, width = 4, text = "I10", command = boat(1))
+   buttonI10.grid(row = 9, column = 10)
+   buttonJ1 = Button(middleFrame, height = 2, width = 4, text = "J1", command = boat(1))
+   buttonJ1.grid(row = 10, column = 1)
+   buttonJ2 = Button(middleFrame, height = 2, width = 4, text = "J2", command = boat(1))
+   buttonJ2.grid(row = 10, column = 2)
+   buttonJ3 = Button(middleFrame, height = 2, width = 4, text = "J3", command = boat(1))
+   buttonJ3.grid(row = 10, column = 3)
+   buttonJ4 = Button(middleFrame, height = 2, width = 4, text = "J4", command = boat(1))
+   buttonJ4.grid(row = 10, column = 4)
+   buttonJ5 = Button(middleFrame, height = 2, width = 4, text = "J5", command = boat(1))
+   buttonJ5.grid(row = 10, column = 5)
+   buttonJ6 = Button(middleFrame, height = 2, width = 4, text = "J6", command = boat(1))
+   buttonJ6.grid(row = 10, column = 6)
+   buttonJ7 = Button(middleFrame, height = 2, width = 4, text = "J7", command = boat(1))
+   buttonJ7.grid(row = 10, column = 7)
+   buttonJ8 = Button(middleFrame, height = 2, width = 4, text = "J8", command = boat(1))
+   buttonJ8.grid(row = 10, column = 8)
+   buttonJ9 = Button(middleFrame, height = 2, width = 4, text = "J9", command = boat(1))
+   buttonJ9.grid(row = 10, column = 9)
+   buttonJ10 = Button(middleFrame, height = 2, width = 4, text = "J10", command = boat(1))
+   buttonJ10.grid(row = 10, column = 10)
+
+#==================================================================================================================================================================
+# Description : Début du placement des bateaux.
+# Entrée : Le joueur cliquera.
+# Sortie : Bateaux du joueur placé, enregistrés.
+#==================================================================================================================================================================
+def bateauxJoueur():
+   wipeCanvas()
+   global middleFrame
+   global value
+   value = StringVar()
+   middleFrame = Frame(mainCanvas, bg = 'DodgerBlue1')
+   middleFrame.pack(side = 'bottom', padx = 50, pady = 50)
+   label1 = Label(mainCanvas, text = "Veuillez placer vos bateaux.", bg = "red")
+   label1.pack(side = 'top', padx = 200, pady = 5)
+   label2 = Label(mainCanvas, text = "Pour chaque bateaux, choissisez d'abord le sens puis cliquez sur la case sur laquelle le bateaux débutera.", bg = "red")
+   label2.pack(side = 'top', padx = 200, pady = 5)
+   consigne("porte-avions", 5, "6","F")
+   horizontal = Radiobutton(mainCanvas, text = "horizontal", variable = value, value = 1)
+   horizontal.pack(side = 'top', padx = 200, pady = 5)
+   vertical = Radiobutton(mainCanvas, text = "vertical", variable = value, value = 2)
+   vertical.pack(side = 'top', padx = 200, pady = 5)
+   grid()
+   
+#==================================================================================================================================================================
+# Description : Sauvegarde les emplacements que le joueur choisira.
+# Entrée : La grille de boutons.
+# Sortie : Cases où les bateaux seront, en liste de caractères
+#==================================================================================================================================================================
+def boat(firstSquare):
+   global boatSquares
+   boatSquares = StringVar()
+   
+
+#==================================================================================================================================================================
+# Description : Indique à l'utilisateur quoi faire.
+# Entrée : le caractéristiques d'un bateau.
+# Sortie : Label, avec la consigne écrite, sur le canvas
+#==================================================================================================================================================================
+
+def consigne(nomBateaux, numDeCases, caseMaxChiffre, caseMaxLettre):
+   global label3
+   label3 = Label(mainCanvas)
+   label3.pack()
+   label3.destroy()
+   label3 = Label(mainCanvas, text = ("Veuillez placer votre", nomBateaux, ". Il fait", numDeCases, "cases, il doit commencer avant les cases", caseMaxChiffre, "en horizontal et avant les cases", caseMaxLettre, "en vertical."), bg = "red")
+   label3.pack(side = 'top', padx = 200, pady = 5)
+
+
+fenetre = Tk()
+homePage()
+
+
