@@ -1,0 +1,38 @@
+                                            PLACEMENT ALEATOIRES DES BATEAUX DE L'ORDINATEUR :
+from tkinter import*
+from random import*
+
+
+def placement_bateau(longueur, début_max):      #Le placement des bateaux va se baser sur la taille du bateau et sur le début maximun ou il peut commencé à se placer sans sortir de la grille
+   global coordonnés                            #Ca sera la même manière de placement pour chaque bateau
+   coordonnés = str()                           
+   x = randint(0, début_max)                    #La fonction randint va permettre de généré aléatoirement les nombres pour le placement des bateaux
+   y = randint(0, début_max)                   
+   sens = randint(0, 1)                         #0 représente l'Horizontale et 1 représente la Verticale
+   case_bateau = "/" + str(x) + str(y)
+   if sens == 0:                                #Si le sens est à l'Horizontale
+      for loop in range(longueur):
+         coordonnés = coordonnés + case_bateau
+         x = x + 1
+         case_bateau = "/" + str(x) + str(y)
+   if sens == 1:                                #Si le sens est à la vericale
+      for loop in range(longueur):
+         coordonnés = coordonnés + case_bateau
+         y = y + 1
+         case_bateau = "/" + str(x) + str(y)
+
+placement_bateau(5, 5)                #(longueur du bateau, où il peut commencer au maximum) ici la taille du porte-avions est de 5 cases et il peut commencer au maximun à 5 cases de la grille            
+coordonnés_porte_avions = coordonnés  #Représente les différents bateaux qu'il y a à placer
+placement_bateau(4, 6)
+coordonnés_croiseur = coordonnés
+placement_bateau(3, 7)
+coordonnés_contre_torpilleurs = coordonnés
+placement_bateau(3, 7)
+coordonnés_sous_marin = coordonnés
+placement_bateau(2, 8)
+coordonnés_torpilleur = coordonnés
+coordonnés_bateaux = coordonnés_porte_avions + coordonnés_croiseur + coordonnés_contre_torpilleurs + coordonnés_sous_marin + coordonnés_torpilleur  #Quand on lancera le programme, on écrira coordonnés_bateaux 
+                                                                                                                                                    # et les coordonnés s'afficheront et ils seront aléatoires
+
+
+         
